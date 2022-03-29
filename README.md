@@ -19,15 +19,17 @@
 
 ## TDD for sign up
 
+- POST { email, password } to '/api/v1/users' creates a new user
 - [x] pseudocode test
 - [x] app use
 - [x] sql table
 - [x] controller for sign up - .post
 - [x] Model create (user) into sql
-- [ ] services middle ware - create user with hashed password
+- [x] services middle ware - create user with hashed password
 
 ## TDD for sign in
 
+- POST { email, password } logs in a user
 - [ ] pseudocode test
 - [ ] controller for sign in - .post /sessions
 - [ ] Model - signIn
@@ -35,4 +37,10 @@
 
 ## Ensure you are logged in
 
+- GET /api/v1/secrets returns a list of secrets if you are signed in ([{title, description, createdAt }])
+
 ## TDD protecting routes using authenticate middleware
+
+## TDD signs out user
+
+- DELETE '/api/v1/users/sessions'

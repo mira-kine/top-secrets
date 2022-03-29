@@ -2,6 +2,7 @@ const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
+const UserService = require('../lib/services/UserService');
 // Dummy user for testing
 const mockUser = {
   firstName: 'Test',
@@ -10,14 +11,18 @@ const mockUser = {
   password: 'asdfg',
 };
 // create registerAndLogin that will check for whether use pw match
-// const registerAndLogin = async (userProps = {}) => {
-//   const password = userProps.password ?? mockUser.password;
+const registerAndLogin = async (userProps = {}) => {
+  const password = userProps.password ?? mockUser.password;
 
-//   // create agent to store cookies between requests
-//   const agent = request.agent(app);
-//   // create user to sign in with
-// }
-// sign in
+  // create agent to store cookies between requests
+  const agent = request.agent(app);
+  // create user to sign in with
+  const user = await UserService.create({ ...mockUser, ...userProps });
+  // sign in
+  const { email } = user;
+  await agent.post('/api/v1/users/sessions').send({ email, password });
+  return [agent, user];
+};
 
 describe('top-secrets routes', () => {
   beforeEach(() => {
@@ -29,7 +34,7 @@ describe('top-secrets routes', () => {
   });
 
   it('creates new user', async () => {
-    const res = await request(app).post('/api/v1/users').send(mockUser);
+    const res = await request(app).post('/api/v1/auth/signup').send(mockUser);
     const { firstName, lastName, email } = mockUser;
 
     expect(res.body).toEqual({
@@ -38,5 +43,11 @@ describe('top-secrets routes', () => {
       lastName,
       email,
     });
+  });
+
+  it('signs in existing user', async () => {
+    const user = await registerAndLogin();
+
+    const res = await request(app).post('/api/v1/auth/signin');
   });
 });
