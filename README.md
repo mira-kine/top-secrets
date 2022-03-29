@@ -30,16 +30,14 @@
 ## TDD for sign in
 
 - POST { email, password } logs in a user
-- [ ] pseudocode test
-- [ ] controller for sign in - .post /sessions
+- [x] pseudocode test
+- [x] controller for sign in - .post /sessions
 - [ ] Model - signIn
 - [ ] authenticate middleware
 
 ## Ensure you are logged in
 
 - GET /api/v1/secrets returns a list of secrets if you are signed in ([{title, description, createdAt }])
-
-## TDD protecting routes using authenticate middleware
 
 ## TDD signs out user
 
