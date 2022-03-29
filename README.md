@@ -19,7 +19,9 @@
 
 ## TDD for sign up
 
-- [ ] pseudocode test
+- [x] pseudocode test
+- [ ] app use
+- [ ] sql table
 - [ ] controller for sign up - .post
 - [ ] Model create (user) into sql
 - [ ] services middle ware - create user with hashed password
