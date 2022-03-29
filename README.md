@@ -23,7 +23,7 @@
 - [x] app use
 - [x] sql table
 - [x] controller for sign up - .post
-- [ ] Model create (user) into sql
+- [x] Model create (user) into sql
 - [ ] services middle ware - create user with hashed password
 
 ## TDD for sign in
