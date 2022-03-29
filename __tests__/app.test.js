@@ -37,4 +37,26 @@ describe('top-secrets routes', () => {
       user,
     });
   });
+
+  it('retrieves currently signed in user', async () => {
+    const agent = request.agent(app);
+
+    await UserService.create({
+      email: 'test@e.com',
+      password: 'asdfg',
+    });
+
+    await agent
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@e.com', password: 'asdfg' });
+
+    const res = await agent.get('/api/v1/users/me');
+
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      email: 'test@e.com',
+      exp: expect.any(Number),
+      iat: expect.any(Number),
+    });
+  });
 });
