@@ -35,12 +35,10 @@ describe('top-secrets routes', () => {
 
   it('creates new user', async () => {
     const res = await request(app).post('/api/v1/auth/signup').send(mockUser);
-    const { firstName, lastName, email } = mockUser;
+    const { email } = mockUser;
 
     expect(res.body).toEqual({
       id: expect.any(String),
-      firstName,
-      lastName,
       email,
     });
   });
