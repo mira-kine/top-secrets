@@ -22,7 +22,7 @@
 - [x] pseudocode test
 - [x] app use
 - [x] sql table
-- [ ] controller for sign up - .post
+- [x] controller for sign up - .post
 - [ ] Model create (user) into sql
 - [ ] services middle ware - create user with hashed password
 
