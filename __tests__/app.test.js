@@ -33,7 +33,7 @@ describe('top-secrets routes', () => {
       .post('/api/v1/users/sessions')
       .send({ email: 'test@e.com', password: 'asdfg' });
     expect(res.body).toEqual({
-      message: 'Signed in successfuly',
+      message: 'Signed in successfully',
       user,
     });
   });
