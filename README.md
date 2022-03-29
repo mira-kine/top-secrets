@@ -19,7 +19,17 @@
 
 ## TDD for sign up
 
+- [ ] pseudocode test
+- [ ] controller for sign up - .post
+- [ ] Model create (user) into sql
+- [ ] services middle ware - create user with hashed password
+
 ## TDD for sign in
+
+- [ ] pseudocode test
+- [ ] controller for sign in - .post /sessions
+- [ ] Model - signIn
+- [ ] authenticate middleware
 
 ## Ensure you are logged in
 
