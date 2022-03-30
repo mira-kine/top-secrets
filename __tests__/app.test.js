@@ -41,20 +41,15 @@ describe('top-secrets routes', () => {
   it('retrieves currently signed in user', async () => {
     const agent = request.agent(app);
 
-    await UserService.create({
+    const user = await UserService.create({
       email: 'test@e.com',
       password: 'asdfg',
     });
 
-    await agent
-      .post('/api/v1/users/sessions')
-      .send({ email: 'test@e.com', password: 'asdfg' });
-
     const res = await agent.get('/api/v1/users/me');
 
     expect(res.body).toEqual({
-      id: expect.any(String),
-      email: 'test@e.com',
+      ...user,
       exp: expect.any(Number),
       iat: expect.any(Number),
     });
