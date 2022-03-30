@@ -40,25 +40,25 @@ describe('top-secrets routes', () => {
 
   it('create secret when signed in', async () => {
     const agent = request.agent(app);
-
+    // create user
     await UserService.create({
       email: 'test@e.com',
       password: 'asdfg',
     });
-
+    // sign in
     await agent
       .post('/api/v1/users/sessions')
       .send({ email: 'test@e.com', password: 'asdfg' });
-
-    const res = await request(app).post('/api/v1/secrets').send({
-      title: 'Bing Bong',
-      description: 'Ayyo take me out to dinnah',
+    // if authenticated, send new secret to /secrets/create
+    let res = await agent.post('/api/v1/secrets/create').send({
+      title: 'Bing Bong3',
+      description: 'Spread the love',
     });
 
     expect(res.body).toEqual({
       id: expect.any(String),
-      title: 'Bing Bong',
-      description: 'Ayyo take me out to dinnah',
+      title: 'Bing Bong3',
+      description: 'Spread the love',
       createdAt: expect.any(String),
     });
   });
