@@ -57,14 +57,14 @@ describe('top-secrets routes', () => {
       id: '1',
       title: 'Bing Bong',
       description: 'Ayyo take me out to dinnah',
-      created_at: '2022-03-30 00:43:12.723336+07',
+      createdAt: expect.any(String),
     };
 
     const secret2 = {
       id: '2',
       title: 'Bing Bong 2',
       description: 'Ayyo',
-      created_at: '2022-03-30 00:43:12.723336+07',
+      createdAt: expect.any(String),
     };
 
     await agent
