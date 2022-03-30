@@ -15,3 +15,9 @@ CREATE TABLE secrets (
     description TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO
+    secrets (title, description)
+VALUES
+    ('Bing Bong', 'Ayyo take me out to dinnah'),
+    ('Bing Bong 2', 'Ayyo');

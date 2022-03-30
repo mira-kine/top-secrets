@@ -53,21 +53,26 @@ describe('top-secrets routes', () => {
     // should get an "unauthenticated status"
     expect(res.status).toEqual(401);
     // if user is authenticated:
-    const secrets = [
-      {
-        id: '1',
-        title: 'Bing Bong',
-        description: 'Ayyo take me out to dinnah',
-        created_at: '2022-03-30 00:43:12.723336+07',
-      },
-    ];
+    const secret1 = {
+      id: '1',
+      title: 'Bing Bong',
+      description: 'Ayyo take me out to dinnah',
+      created_at: '2022-03-30 00:43:12.723336+07',
+    };
+
+    const secret2 = {
+      id: '2',
+      title: 'Bing Bong 2',
+      description: 'Ayyo',
+      created_at: '2022-03-30 00:43:12.723336+07',
+    };
 
     await agent
       .post('/api/v1/users/sessions')
       .send({ email: 'test@e.com', password: 'asdfg' });
     res = await agent.get('/api/v1/secrets');
     // Should get a successful response
-    expect(res.body).toEqual(secrets);
+    expect(res.body).toEqual([secret1, secret2]);
     expect(res.status).toEqual(200);
   });
 
