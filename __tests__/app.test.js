@@ -54,4 +54,14 @@ describe('top-secrets routes', () => {
       iat: expect.any(Number),
     });
   });
+
+  it('signs out user through a delete route', async () => {
+    await UserService.signIn({
+      email: 'test@e.com',
+      password: asdfg,
+    });
+
+    const res = await request(app).delete('/api/v1/users/sessions');
+    expect(res.body).toBeNull();
+  });
 });
