@@ -32,13 +32,15 @@
 - POST { email, password } logs in a user
 - [x] pseudocode test
 - [x] controller for sign in - .post /sessions
-- [ ] Model - signIn
-- [ ] authenticate middleware
+- [x] Model - signIn
+- [x] authenticate middleware
 
-## Ensure you are logged in
+## Ensure you are logged in, get all secrets
 
 - GET /api/v1/secrets returns a list of secrets if you are signed in ([{title, description, createdAt }])
 
 ## TDD signs out user
 
 - DELETE '/api/v1/users/sessions'
+- [x] clear cookie
+- [x] check that it was successful
