@@ -3,6 +3,7 @@ const setup = require('../data/setup');
 const request = require('supertest');
 const app = require('../lib/app');
 const UserService = require('../lib/services/UserService');
+const User = require('../lib/models/User');
 
 describe('top-secrets routes', () => {
   beforeEach(() => {
@@ -56,12 +57,13 @@ describe('top-secrets routes', () => {
   });
 
   it('signs out user through a delete route', async () => {
-    await UserService.signIn({
+    const user = await UserService.signIn({
       email: 'test@e.com',
       password: asdfg,
     });
 
     const res = await request(app).delete('/api/v1/users/sessions');
-    expect(res.body).toBeNull();
+    expect(res.body).toEqual(user);
+    expect(await User.findByEmail()).toBeNull();
   });
 });
