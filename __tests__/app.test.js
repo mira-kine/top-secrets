@@ -52,14 +52,7 @@ describe('top-secrets routes', () => {
     let res = await agent.get('/api/v1/secrets');
     // should get an "unauthenticated status"
     expect(res.status).toEqual(401);
-    // Authenticate a user that isn't authorized
-    await agent
-      .post('/api/v1/users/sessions')
-      .send({ email: 'test@e.com', password: 'asdfg' });
-    res = await agent.get('/api/v1/secrets');
-    // Should get an "unauthorized" status
-    expect(res.status).toEqual(403);
-    // Authenticate user that IS authorized
+    // if user is authorized:
     await agent
       .post('/api/v1/users/sessions')
       .send({ email: 'test@e.com', password: 'asdfg' });
