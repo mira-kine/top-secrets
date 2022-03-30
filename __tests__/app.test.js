@@ -64,6 +64,6 @@ describe('top-secrets routes', () => {
 
     const res = await request(app).delete('/api/v1/users/sessions');
     expect(res.body).toEqual(user);
-    expect(await User.findByEmail()).toBeNull();
+    expect(await User.findByEmail(user.email)).toBeNull();
   });
 });
