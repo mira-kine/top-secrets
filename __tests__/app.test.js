@@ -49,16 +49,23 @@ describe('top-secrets routes', () => {
 
     // Test authentication for end point
     // when no user is signed in:
-
+    let res = await agent.get('/api/v1/secrets');
     // should get an "unauthenticated status"
-
+    expect(res.status).toEqual(401);
     // Authenticate a user that isn't authorized
-
+    await agent
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@e.com', password: 'asdfg' });
+    res = await agent.get('/api/v1/secrets');
     // Should get an "unauthorized" status
-
+    expect(res.status).toEqual(403);
     // Authenticate user that IS authorized
-
+    await agent
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@e.com', password: 'asdfg' });
+    res = await agent.get('/api/v1/secrets');
     // Should get a successful response
+    expect(res.status).toEqual(200);
   });
 
   it('signs out user through a delete route', async () => {
