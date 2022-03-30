@@ -39,27 +39,27 @@ describe('top-secrets routes', () => {
     });
   });
 
-  // it('retrieves currently signed in user', async () => {
-  //   const agent = request.agent(app);
+  it('gets all secrets when signed in', async () => {
+    const agent = request.agent(app);
 
-  //   await UserService.create({
-  //     email: 'test@e.com',
-  //     password: 'asdfg',
-  //   });
+    await UserService.create({
+      email: 'test@e.com',
+      password: 'asdfg',
+    });
 
-  //   await agent
-  //     .post('/api/v1/users/sessions')
-  //     .send({ email: 'test@e.com', password: 'asdfg' });
+    // Test authentication for end point
+    // when no user is signed in:
 
-  //   const res = await agent.get('/api/v1/users/me');
+    // should get an "unauthenticated status"
 
-  //   expect(res.body).toEqual({
-  //     id: expect.any(String),
-  //     email: 'test@e.com',
-  //     exp: expect.any(Number),
-  //     iat: expect.any(Number),
-  //   });
-  // });
+    // Authenticate a user that isn't authorized
+
+    // Should get an "unauthorized" status
+
+    // Authenticate user that IS authorized
+
+    // Should get a successful response
+  });
 
   it('signs out user through a delete route', async () => {
     await UserService.create({
