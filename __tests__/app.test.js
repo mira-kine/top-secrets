@@ -38,6 +38,19 @@ describe('top-secrets routes', () => {
     });
   });
 
+  it('create secret when signed in', async () => {
+    const res = await request(app).post('/api/v1/secrets').send({
+      title: 'Bing Bong',
+      description: 'Ayyo take me out to dinnah',
+    });
+    expect(res.body).toEqual({
+      id: expect.any(String),
+      title: 'Bing Bong',
+      description: 'Ayyo take me out to dinnah',
+      createdAt: expect.any(String),
+    });
+  });
+
   it('gets all secrets when signed in', async () => {
     const agent = request.agent(app);
 
